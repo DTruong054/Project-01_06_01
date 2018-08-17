@@ -12,20 +12,41 @@
 var formValidity = true;
 
 //Function to validate the form
-function validateForm (evt) {  
-    if (evt.preventDefault) {
-        evt.preventDefault();
+function validateForm (methodCall) {  
+    var results = true;
+    var form = document.getElementsByTagName("form")
+    if (methodCall.preventDefault) {
+        methodCall.preventDefault();
     } else {
-        evt.returnValue = false;
+        methodCall.returnValue = false;
     }
     formValidity = true;
+
+    validateRequired();
 }
 
+function validateRequired() {
+    var collectInput = document.querySelectorAll("#contactinfo input")
+    var errorDiv = document.getElementById("errortext");
+    var currentElementCount = collectInput.length;
 
+    try {
+        for (var i = 0; i < currentElementCount; i++) {
+            if (document.getElementById("addrinput").value === "") {
+                
+            } else {
+                
+            }
+        }
+    } catch (msg) {
+        
+    }
+
+    alert(collectInput);
+}
 
 //An function that would call all the other functions
 function createEventListeners() {
-    // validateForm();
      var form = document.getElementsByTagName("form")[0];
     if (form.addEventListener) {
         form.addEventListener("submit", validateForm, false)
