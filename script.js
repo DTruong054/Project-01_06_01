@@ -9,13 +9,10 @@
 */
 
 "use strict";
-var formValidity;
-var preventDefault;
+var formValidity = true;
 
 //Function to validate the form
-function validateForm(evt) {
-    
-    formValidity = true;
+function validateForm (evt) {  
     if (evt.preventDefault) {
         evt.preventDefault();
     } else {
@@ -24,9 +21,17 @@ function validateForm(evt) {
     formValidity = true;
 }
 
+
+
 //An function that would call all the other functions
 function createEventListeners() {
-    validateForm();
+    // validateForm();
+     var form = document.getElementsByTagName("form")[0];
+    if (form.addEventListener) {
+        form.addEventListener("submit", validateForm, false)
+    } else {
+        form.addEventListener("onsubmit", validateForm)
+    }
 }
 
-window.addEventListener("load", createEventListeners);
+addEventListener("load", createEventListeners);
